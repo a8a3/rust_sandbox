@@ -50,9 +50,9 @@ mod tests {
 
         let house = House::new(rooms);
         let room_a = house.get_room(0);
-        let socket_in_room_a = room_a.get_device(0);
+        let maybe_socket_in_room_a = room_a.get_device(0);
 
-        if let Device::Socket(s) = socket_in_room_a {
+        if let Device::Socket(s) = maybe_socket_in_room_a.unwrap() {
             assert_eq!(220, s.get_wattage());
             assert_eq!(true, s.is_on());
         } else {
@@ -60,9 +60,9 @@ mod tests {
         }
 
         let room_b = house.get_room(1);
-        let socket_in_room_b = room_b.get_device(0);
+        let maybe_socket_in_room_b = room_b.get_device(0);
 
-        if let Device::Socket(s) = socket_in_room_b {
+        if let Device::Socket(s) = maybe_socket_in_room_b.unwrap() {
             assert_eq!(380, s.get_wattage());
             assert_eq!(true, s.is_on());
         } else {
@@ -78,9 +78,9 @@ mod tests {
 
         let mut house = House::new(rooms);
         let room = house.get_room_mut(0);
-        let socket = room.get_device_mut(0);
+        let maybe_socket = room.get_device_mut(0);
 
-        if let Device::Socket(s) = socket {
+        if let Device::Socket(s) = maybe_socket.unwrap() {
             assert_eq!(220, s.get_wattage());
             assert_eq!(true, s.is_on());
 

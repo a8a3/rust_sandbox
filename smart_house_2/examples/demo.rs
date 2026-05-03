@@ -27,9 +27,9 @@ pub fn main() {
     house.print_state();
 
     let room_0_ref = house.get_room_mut(0);
-    let device_1_ref = room_0_ref.get_device_mut(1);
+    let maybe_device_1_ref = room_0_ref.get_device_mut(1);
 
-    if let Device::Socket(s) = device_1_ref {
+    if let Device::Socket(s) = maybe_device_1_ref.unwrap() {
         s.turn_on();
     } else {
         panic!("expected Socket device");
